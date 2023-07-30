@@ -24,6 +24,16 @@
 
 
 .square {
+    user-select: none;
+    box-sizing: border-box;
     flex: 1;    
-    border: 1px solid black;
+    /* border: 1px solid black; */
+}
+
+
+.square:hover{
+    /* border: 1px solid #505050; */
+
+    /* box-shadow:0px 0px 0px 10px black inset; */
+
 }
