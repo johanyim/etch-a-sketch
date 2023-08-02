@@ -1,9 +1,19 @@
 const BLACK = "#000000"
-let currentColor = BLACK
+const ERASER = "#FFFFFF"
+let chosenColor = BLACK
 let dim = 10;
 
 const grid = document.getElementById("grid")
 const slider = document.getElementById("dimension");
+const sliderValue = document.getElementById("slider-value");
+const colorPicker = document.getElementById("color-picker")
+
+
+let mode = "color";
+const colorButton = document.getElementById("color-mode")
+const eraserButton = document.getElementById("eraser-mode")
+const rainbowButton = document.getElementById("rainbow-mode")
+
 
 function makeGrid(grid, dim){
     //delete all elements in grid class
@@ -20,10 +30,15 @@ function makeGrid(grid, dim){
         }
         grid.appendChild(row)
     }
+
 }
 
 slider.oninput = function() {
     makeGrid(grid, this.value);
+    sliderValue.innerHTML = this.value+" &times "+this.value
+}
+colorPicker.oninput = function() {
+    chosenColor = this.value;
 }
 let drawing = false;
 
@@ -37,43 +52,44 @@ window.addEventListener('mouseup',()=>{
 })
 
 function changeColor(e) {
-    e.target.style.backgroundColor = currentColor;
-    // if (e.type === 'mouseover' && !drawing) return
-    // if (currentMode === 'rainbow') {
-    //     const randomR = Math.floor(Math.random() * 256)
-    //     const randomG = Math.floor(Math.random() * 256)
-    //     const randomB = Math.floor(Math.random() * 256)
-    //     e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
-    // } else if (currentMode === 'color') {
-    //     e.target.style.backgroundColor = currentColor
-    // } else if (currentMode === 'eraser') {
-    //     e.target.style.backgroundColor = '#fefefe'
-    // }
+    if(mode === "color"){
+        e.target.style.backgroundColor = chosenColor;
+    }
+
+    if(mode === "eraser"){
+        e.target.style.backgroundColor = ERASER;
+    }
+
+    if(mode === "rainbow"){
+        e.target.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+        
+    }
+
+
 }
 
-function makeDrawable(square){
+colorButton.addEventListener('click',()=>{
+    mode = "color"
+})
+eraserButton.addEventListener('click',()=>{
+    mode = "eraser"
+})
+rainbowButton.addEventListener('click',()=>{
+    mode = "rainbow"
+})
+
+
+function activateButton(mode) { 
     
+}
+
+
+
+function makeDrawable(square){
     square.addEventListener('mousedown', changeColor)
     square.addEventListener('mouseenter', (e) => {
-        console.log("mouseenter", drawing)
-        
-        if(drawing){
-            
-            changeColor(e)
-        }
+        drawing ? changeColor(e) : null
     })
-    // square.addEventListener('mousedown', () => {
-    //     square.style.setProperty('background-color', currentColor);
-    // })
-    // square.addEventListener('mouseenter', () => {
-        
-        
-    //     if(drawing){
-            
-    //         square.style.setProperty('background-color', currentColor);
-    //     }
-    // })
-
 }
 
 

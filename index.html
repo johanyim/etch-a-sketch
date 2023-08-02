@@ -8,26 +8,51 @@
     <script src="etch-a-sketch.js" defer></script>
 </head>
 <body>
-    <div id="grid">
-        <!-- <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
+
+    <h1>Etch-a-Sketch</h1>
+    <div class="container">
+        <div class="controls">
+            <input id="color-picker" type="color">
+            <div class="buttons">
+                <button id="color-mode">Color mode</button>
+                <button id="eraser-mode">Eraser mode</button>
+                <button id="rainbow-mode">Rainbow mode</button>
+                <button id="clear-button">Clear</button>
+            </div>
+
+            
+            <div class="slider-contianer">
+                <div id="slider-value">10 &times 10</div>
+                <input id="dimension" type="range" min="1" max="64" value="10">
+            </div>
+            
+            
         </div>
-        <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
+        
+        
+
+        <div id="grid">
+            <!-- <div class="row">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+            <div class="row">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+            <div class="row">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div> -->
         </div>
-        <div class="row">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-        </div> -->
+        <div style="flex: 1;"></div>
+        
+
     </div>
-    <div class="slidecontainer">
-        <input type="range" min="1" max="64" value="10" class="slider" id="dimension">
-    </div>
+    
 
 
     
