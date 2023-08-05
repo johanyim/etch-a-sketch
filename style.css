@@ -18,13 +18,13 @@ h1 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+
+
 .container {
     display: flex;
-    /* flex-direction: column; */
 }
 
 .controls {
-
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@ h1 {
     border: none;
     border-radius: 50px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
+}
   
 
 .buttons {
@@ -110,6 +110,27 @@ h1 {
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 10px;
 }
+
+@media only screen and (max-width: 768px) {
+    .container{
+        flex-direction: column-reverse;
+    }
+
+    #grid{
+        width: 90vw;
+        margin-bottom: 30px;
+        /* height: 90vh; */
+    }
+
+    .controls {
+        flex-direction: row;
+    }
+
+    .buttons {
+        flex-direction: row;
+    }
+}
+
 
 .row {
     display: flex;

@@ -13,6 +13,7 @@ let mode = "color";
 const colorButton = document.getElementById("color-mode")
 const eraserButton = document.getElementById("eraser-mode")
 const rainbowButton = document.getElementById("rainbow-mode")
+const clearButton = document.getElementById("clear-button")
 
 
 function makeGrid(grid, dim){
@@ -69,6 +70,9 @@ eraserButton.addEventListener('click',()=>{
 rainbowButton.addEventListener('click',()=>{
     activateMode("rainbow");
 })
+clearButton.addEventListener('click', ()=>{
+    makeGrid(grid, slider.value);
+})
 
 
 function activateMode(newMode) { 
@@ -107,6 +111,10 @@ function makeDrawable(square){
         drawing ? changeColor(e) : null
     })
 }
+
+
+
+
 
 //default grid 
 makeGrid(grid, dim);
