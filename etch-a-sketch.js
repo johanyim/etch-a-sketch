@@ -33,57 +33,73 @@ function makeGrid(grid, dim){
 
 }
 
+
+// controls 
 slider.oninput = function() {
     makeGrid(grid, this.value);
     sliderValue.innerHTML = this.value+" &times "+this.value
 }
 colorPicker.oninput = function() {
     chosenColor = this.value;
+    document.documentElement.style.setProperty('--hover-color', this.value);
+    activateMode("color")
 }
-let drawing = false;
-
-
-window.addEventListener('mousedown',()=>{
-    drawing = true;
-})
-
-window.addEventListener('mouseup',()=>{
-    drawing = false;;
-})
 
 function changeColor(e) {
     if(mode === "color"){
         e.target.style.backgroundColor = chosenColor;
+        document.documentElement.style.setProperty('--hover-color', chosenColor);
     }
-
     if(mode === "eraser"){
         e.target.style.backgroundColor = ERASER;
+        document.documentElement.style.setProperty('--hover-color', "#FFFFFF");
     }
-
     if(mode === "rainbow"){
-        e.target.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-        
+        e.target.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);   
+        document.documentElement.style.setProperty('--hover-color', "#FFFFFF");
     }
-
-
 }
 
 colorButton.addEventListener('click',()=>{
-    mode = "color"
+    activateMode("color");
 })
 eraserButton.addEventListener('click',()=>{
-    mode = "eraser"
+    activateMode("eraser");
 })
 rainbowButton.addEventListener('click',()=>{
-    mode = "rainbow"
+    activateMode("rainbow");
 })
 
 
-function activateButton(mode) { 
-    
+function activateMode(newMode) { 
+    if(mode == "color") {
+        colorButton.classList.remove("active")
+    }else if(mode == "eraser") {
+        eraserButton.classList.remove("active")
+    }else if(mode == "rainbow") {
+        rainbowButton.classList.remove("active")
+    }
+
+    if(newMode == "color") {
+        colorButton.classList.add("active")
+    }else if(newMode == "eraser") {
+        eraserButton.classList.add("active")
+    }else if(newMode == "rainbow") {
+        rainbowButton.classList.add("active")
+    }
+
+    mode = newMode
 }
 
 
+// drawing on canvas
+let drawing = false;
+window.addEventListener('mousedown',()=>{
+    drawing = true;
+})
+window.addEventListener('mouseup',()=>{
+    drawing = false;;
+})
 
 function makeDrawable(square){
     square.addEventListener('mousedown', changeColor)
@@ -92,10 +108,7 @@ function makeDrawable(square){
     })
 }
 
-
-
-
-
+//default grid 
 makeGrid(grid, dim);
 
 
